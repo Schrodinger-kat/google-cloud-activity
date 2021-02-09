@@ -1,0 +1,12 @@
+region             = "us-central1"
+gcp_project_id     = "gcp-training-30-3033001"
+vpc_name           = "jishnn-tf-vpc"
+subnet_name        = "jishnn-tf-sub"
+subnet_cidr        = "10.20.0.0/24"
+fw_name            = "jishnn-tf-fw"
+route_name         = "jishnn-tf-route"
+dest_range         = "15.0.0.0/24"
+next_hop_ip        = "10.132.1.5"
+vm_name            = "jishnn-tf-cmi"
+inst_type          = "f1-micro"
+
