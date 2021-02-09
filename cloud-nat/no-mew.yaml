@@ -1,0 +1,17 @@
+resources:
+- name: jishnn-noext-cvi
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-f
+    machineType: zones/us-central1-f/machineTypes/f1-micro
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      diskType: zones/us-central1-f/diskTypes/pd-ssd
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
+    networkInterfaces:
+    - network: https://www.googleapis.com/compute/v1/projects/gcp-training-01-303001/global/networks/jishnn-pnw
+      subnetwork: https://www.googleapis.com/compute/v1/projects/gcp-training-01-303001/regions/us-central1/subnetworks/dewspider-nw-sub
