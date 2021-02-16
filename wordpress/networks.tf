@@ -15,7 +15,7 @@ resource "google_compute_subnetwork" "kanto" {
 
 resource "google_compute_subnetwork" "hoenn" {
     name = "jishnn-sub2"
-    region = "us-central1"
+    region = "us-east1"
     ip_cidr_range   = "10.0.2.0/24"
     network = google_compute_network.pokenav.name
     private_ip_google_access = true

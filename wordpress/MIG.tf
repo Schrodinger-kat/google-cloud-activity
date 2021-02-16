@@ -17,7 +17,7 @@ resource "google_compute_instance_template" "gen1" {
 
   network_interface {
     network    = "jishnn-tf-vpc"
-    subnetwork = "jishnn-sub1"
+    subnetwork = "jishnn-sub2"
   }
 
   lifecycle {
@@ -45,7 +45,7 @@ resource "google_compute_instance_template" "gen2" {
 
   network_interface {
     network    = "jishnn-tf-vpc"
-    subnetwork = "jishnn-sub2"
+    subnetwork = "jishnn-sub1"
   }
 
   lifecycle {
@@ -57,8 +57,8 @@ resource "google_compute_instance_template" "gen2" {
 
 resource "google_compute_region_instance_group_manager" "mig_group1" {
   name               = "jishnn-mig-g1"
-  region             = us-east1
-  base_instance_name = jishnn-mig
+  region             = "us-east1"
+  base_instance_name = "jishnn-mig"
   target_size        = 1
 
   version {
@@ -80,8 +80,8 @@ resource "google_compute_region_instance_group_manager" "mig_group1" {
 
 resource "google_compute_region_instance_group_manager" "mig_group2" {
   name               = "jishnn-mig-g2"
-  region             = europe-west1
-  base_instance_name = jishnn-mig
+  region             = "europe-west1"
+  base_instance_name = "jishnn-mig"
   target_size        = 1
 
   version {

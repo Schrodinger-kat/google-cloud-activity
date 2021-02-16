@@ -10,7 +10,7 @@ resource "google_sql_database_instance" "pokedex" {
     tier = "db-f1-micro"
   }
 
-  deletion_protection  = "true"
+  deletion_protection  = "false"
 }
 
 resource "random_id" "db_name_suffix" {
