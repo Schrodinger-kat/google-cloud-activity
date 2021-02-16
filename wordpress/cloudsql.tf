@@ -1,10 +1,10 @@
 resource "google_sql_database" "pss" {
   name     = "wordpress-db"
-  instance = google_sql_database_instance.pokedex.name
+  instance = google_sql_database_instance.pokedex3.self_link
 }
 
-resource "google_sql_database_instance" "pokedex" {
-  name   = "wordpress"
+resource "google_sql_database_instance" "pokedex3" {
+  name   = "jishnn-wordpress-db"
   region = "us-central1"
   settings {
     tier = "db-f1-micro"
@@ -19,7 +19,7 @@ resource "random_id" "db_name_suffix" {
 
 resource "google_sql_user" "users" {
   name     = "jishnn"
-  instance = google_sql_database_instance.pokedex.name
+  instance = google_sql_database_instance.pokedex3.self_link
   host     = "wordpress.com"
   password = "324b21"
 }

@@ -18,10 +18,10 @@ resource "google_compute_backend_service" "billpc" {
   name          = "jishnn-mig-backend-service"
   health_checks = [google_compute_http_health_check.nursejoy.id]
   backend {
-    group = google_compute_region_instance_group_manager.mig_group1.self_link
+    group = google_compute_region_instance_group_manager.mig_group1.id
   }
   backend {
-    group = google_compute_region_instance_group_manager.mig_group2.self_link
+    group = google_compute_region_instance_group_manager.mig_group2.id
   }
 }
 

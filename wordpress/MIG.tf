@@ -16,8 +16,8 @@ resource "google_compute_instance_template" "gen1" {
   }
 
   network_interface {
-    network    = "jishnn-tf-vpc"
-    subnetwork = "jishnn-sub2"
+    network    = google_compute_network.pokenav.self_link
+    subnetwork = google_compute_subnetwork.hoenn.self_link
   }
 
   lifecycle {
@@ -44,8 +44,8 @@ resource "google_compute_instance_template" "gen2" {
   }
 
   network_interface {
-    network    = "jishnn-tf-vpc"
-    subnetwork = "jishnn-sub1"
+    network    = google_compute_network.pokenav.self_link
+    subnetwork = google_compute_subnetwork.kanto.self_link
   }
 
   lifecycle {
