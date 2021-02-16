@@ -1,0 +1,1 @@
+wordpress application on VMs 
