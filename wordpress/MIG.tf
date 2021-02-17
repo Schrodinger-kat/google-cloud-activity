@@ -1,3 +1,16 @@
+resource "google_compute_health_check" "autohealing" {
+  name                = "autohealing-health-check"
+  check_interval_sec  = 5
+  timeout_sec         = 5
+  healthy_threshold   = 2
+  unhealthy_threshold = 10 # 50 seconds
+
+  http_health_check {
+    request_path = "/healthz"
+    port         = "8080"
+  }
+}
+
 resource "google_compute_instance_template" "gen1" {
   name = "jishnn-mig-tmp1"
   machine_type            = "n1-standard-1"
@@ -59,7 +72,7 @@ resource "google_compute_region_instance_group_manager" "mig_group1" {
   name               = "jishnn-mig-g1"
   region             = "us-east1"
   base_instance_name = "jishnn-mig"
-  target_size        = 1
+  target_size        = 2
 
   version {
     instance_template = google_compute_instance_template.gen1.self_link
@@ -82,7 +95,7 @@ resource "google_compute_region_instance_group_manager" "mig_group2" {
   name               = "jishnn-mig-g2"
   region             = "europe-west1"
   base_instance_name = "jishnn-mig"
-  target_size        = 1
+  target_size        = 2
 
   version {
     instance_template = google_compute_instance_template.gen2.self_link
@@ -97,5 +110,38 @@ resource "google_compute_region_instance_group_manager" "mig_group2" {
   named_port {
     name = "https"
     port = 443
+  }
+}
+
+resource "google_compute_region_autoscaler" "evo1" {
+  name   = "hoenn-region-autoscaler"
+  region = "us-east1"
+  target = google_compute_region_instance_group_manager.mig_group1.id
+
+  autoscaling_policy {
+    max_replicas    = 3
+    min_replicas    = 1
+    cooldown_period = 60
+
+    cpu_utilization {
+      target = 0.5
+    }
+  }
+}
+
+
+resource "google_compute_region_autoscaler" "evo2" {
+  name   = "kanto-region-autoscaler"
+  region = "europe-west1"
+  target = google_compute_region_instance_group_manager.mig_group2.id
+
+  autoscaling_policy {
+    max_replicas    = 3
+    min_replicas    = 1
+    cooldown_period = 60
+
+    cpu_utilization {
+      target = 0.5
+    }
   }
 }

@@ -1,3 +1,4 @@
+/*
 resource "google_sql_database" "pss" {
   name     = "wordpress-db"
   instance = google_sql_database_instance.pokedex3.self_link
@@ -23,3 +24,5 @@ resource "google_sql_user" "users" {
   host     = "wordpress.com"
   password = "324b21"
 }
+*/
+
