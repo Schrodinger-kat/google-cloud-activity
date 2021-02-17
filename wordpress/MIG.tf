@@ -16,14 +16,17 @@ resource "google_compute_instance_template" "gen1" {
   machine_type            = "n1-standard-1"
   metadata_startup_script = var.startup_script
   region                  = "us-east1"
-  
+  tags = [ "http-server","http","https","allow-iap-ssh","allow-http" ]
+
   scheduling {
     automatic_restart = false
-    preemptible       = true
+    preemptible       = false
   }
 
   disk {
     source_image = "debian-cloud/debian-9"
+    disk_type = "pd-ssd"
+    disk_size_gb = 10
     auto_delete  = true
     boot         = true
   }
@@ -31,6 +34,9 @@ resource "google_compute_instance_template" "gen1" {
   network_interface {
     network    = google_compute_network.pokenav.self_link
     subnetwork = google_compute_subnetwork.hoenn.self_link
+    access_config {
+      
+    }
   }
 
   lifecycle {
@@ -44,14 +50,17 @@ resource "google_compute_instance_template" "gen2" {
   machine_type            = "n1-standard-1"
   metadata_startup_script = var.startup_script
   region                  = "europe-west1"
-  
+  tags = [ "http-server","http","allow-incoming","allow-iap-ssh","allow-http"]
+
   scheduling {
     automatic_restart = false
-    preemptible       = true
+    preemptible       = false
   }
 
   disk {
     source_image = "debian-cloud/debian-9"
+    disk_type = "pd-ssd"
+    disk_size_gb = 10
     auto_delete  = true
     boot         = true
   }
@@ -59,6 +68,8 @@ resource "google_compute_instance_template" "gen2" {
   network_interface {
     network    = google_compute_network.pokenav.self_link
     subnetwork = google_compute_subnetwork.kanto.self_link
+     access_config {
+    }
   }
 
   lifecycle {
@@ -124,7 +135,7 @@ resource "google_compute_region_autoscaler" "evo1" {
     cooldown_period = 60
 
     cpu_utilization {
-      target = 0.5
+      target = 0.7
     }
   }
 }
@@ -141,7 +152,7 @@ resource "google_compute_region_autoscaler" "evo2" {
     cooldown_period = 60
 
     cpu_utilization {
-      target = 0.5
+      target = 0.7
     }
   }
 }

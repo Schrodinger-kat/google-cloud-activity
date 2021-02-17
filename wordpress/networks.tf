@@ -21,6 +21,8 @@ resource "google_compute_subnetwork" "hoenn" {
     private_ip_google_access = true
     }
 
+/*
+
 resource "google_compute_router" "kanto_region_router" {
   name    = "euro-nat-gw"
   region  = google_compute_subnetwork.kanto.self_link
@@ -66,3 +68,4 @@ resource "google_compute_router_nat" "hoenn_gateway" {
     filter = "ERRORS_ONLY"
   }
 }
+*/
