@@ -1,5 +1,6 @@
 resource "google_sql_database_instance" "dex" {
   name   = "wordpressdb_inst"
+  region = "us-east1"
   
   settings {
     tier              = "db-f1-micro"
@@ -7,7 +8,7 @@ resource "google_sql_database_instance" "dex" {
     disk_size         = "10"
 
     ip_configuration {
-      ipv4_enabled    = false        # don't give the db a public IPv4
+      ipv4_enabled    = false
       private_network = google_compute_network.pokenav.self_link
   }
 
