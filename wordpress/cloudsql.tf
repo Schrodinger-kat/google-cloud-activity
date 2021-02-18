@@ -1,12 +1,16 @@
 resource "google_sql_database_instance" "dex" {
   name   = "wordpressdb-inst"
-  region = "us-east1"
+  database_version = "MYSQL_5_6"
   
   settings {
     tier              = "db-f1-micro"
     availability_type = "REGIONAL"
     disk_size         = "10"
 
+    backup_configuration {
+      binary_log_enabled = true
+      enabled = true
+    }
     ip_configuration {
       ipv4_enabled    = false
       private_network = google_compute_network.pokenav.self_link
