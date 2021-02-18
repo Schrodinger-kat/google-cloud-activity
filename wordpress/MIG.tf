@@ -14,7 +14,7 @@ resource "google_compute_health_check" "autohealing" {
 resource "google_compute_instance_template" "gen1" {
   name = "jishnn-mig-tmp1"
   machine_type            = "n1-standard-1"
-  metadata_startup_script = var.startup_script
+  metadata_startup_script = file("/startup/startup.sh")
   region                  = "us-east1"
   tags = [ "http-server","http","https","allow-iap-ssh","allow-http" ]
 
@@ -48,7 +48,7 @@ resource "google_compute_instance_template" "gen2" {
 
   name = "jishnn-mig-tmp2"
   machine_type            = "n1-standard-1"
-  metadata_startup_script = var.startup_script
+  metadata_startup_script = file("/startup/startup.sh")
   region                  = "europe-west1"
   tags = [ "http-server","http","allow-incoming","allow-iap-ssh","allow-http"]
 
