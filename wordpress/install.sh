@@ -2,8 +2,8 @@ sudo apt-get install -y apache2 apache2-utils php libapache2-mod-php php-mysql p
 sudo apt-get install phpmyadmin
 sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/
 sudo mv /etc/apache2/conf-available/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
-curl -X GET http://IP-Address-or-Domain/phpmyadmin/
 cd /etc/apache2/sites-available/
+
 sudo cat > wordpress.conf << EOF
 <VirtualHost *:80>
         ServerName jishnn.wp
