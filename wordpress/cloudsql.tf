@@ -1,5 +1,5 @@
 resource "google_sql_database_instance" "dex" {
-  name   = "wordpdb-inst"
+  name   = "wpdb-inst"
   database_version = "MYSQL_5_6"
   
   settings {
