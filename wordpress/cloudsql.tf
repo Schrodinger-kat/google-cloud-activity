@@ -1,5 +1,5 @@
 resource "google_sql_database_instance" "dex" {
-  name   = "wordpressdb-inst"
+  name   = "wordpdb-inst"
   database_version = "MYSQL_5_6"
   
   settings {
@@ -23,7 +23,7 @@ resource "google_sql_database_instance" "dex" {
 
 resource "google_sql_database" "dexpss" {
   name     = "wordpressdb"
-  instance = google_sql_database_instance.dex.self_link
+  instance = google_sql_database_instance.dex.name
 }
 
 resource "random_id" "db_name_suffix" {
@@ -32,7 +32,7 @@ resource "random_id" "db_name_suffix" {
 
 resource "google_sql_user" "users" {
   name     = "admin"
-  instance = google_sql_database_instance.dex.self_link
+  instance = google_sql_database_instance.dex.name
   host     = "wordpress.com"
   password = "324b21"
 }

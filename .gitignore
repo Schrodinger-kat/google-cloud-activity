@@ -1,1 +1,2 @@
 wordpress/terraform.tfstate.backup
+*.backup
