@@ -12,8 +12,8 @@ resource "google_sql_database_instance" "dex" {
       enabled = true
     }
     ip_configuration {
-      ipv4_enabled    = false
-      private_network = google_compute_network.pokenav.self_link
+      ipv4_enabled    = true
+      //private_network = google_compute_network.pokenav.self_link
   }
 
 }
