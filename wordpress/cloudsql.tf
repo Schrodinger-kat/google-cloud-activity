@@ -1,5 +1,5 @@
 resource "google_sql_database_instance" "dex" {
-  name   = "wordpressdb_inst"
+  name   = "wordpressdb-inst"
   region = "us-east1"
   
   settings {
